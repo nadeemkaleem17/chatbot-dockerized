@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/usr/src/app  # Mount your local frontend code into the container
+    ports:
+      - "3000:80" # Map React frontend container's port to localhost
+    depends_on:
+      - backend # React depends on JSON Server
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "5000:5000" # Map JSON Server container's port to localhost
